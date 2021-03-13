@@ -1,6 +1,6 @@
 # kvdb
 
-It's a very simple Wrapper for **localStorage**. The goal if use **lS** as a key/value database.
+It's a very simple wrapper for **localStorage**. The goal is use as a key/value database.
 
 # Example
 
