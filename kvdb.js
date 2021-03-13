@@ -1,6 +1,6 @@
 class kvdb {
 
-  constructor(schema = '') {
+  constructor(schema = '_') {
 
     // UUID generator
     this._uuid = function() {
@@ -22,7 +22,8 @@ class kvdb {
       _id = this._uuid();
       this.db.setItem(k, _id);
       this.is_new = true;
-    }
+    };
+
   }
 
   _isJ(s) {
@@ -89,7 +90,18 @@ class kvdb {
   }
 
   drop() {
-    this.db.clear();
+    var j, q;
+    var len = this.schema.length;
+    var arr = [];
+    q = this.db.length;
+    for (j = 0; j < q; j++){
+      if (this.db.key(j).substring(0, len) == this.schema)
+        arr.push(this.db.key(j));
+    }
+    q = arr.length;
+    for (j = 0; j < q; j++) {
+      this.db.removeItem(arr[j]);
+    }
   }
 
   id() {
