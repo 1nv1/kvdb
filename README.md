@@ -1,0 +1,2 @@
+# kvdb
+Wrapper for localStorage
