@@ -75,6 +75,13 @@ If you need set or create a key you can use the **set** method. The first parame
 <instance>.set(<key>, <value>);
 ```
 
+## Export
+
+If you need export the schema to json format (string) you can use the **export** method.
+
+```js
+let json = <instance>.export();
+
 ## Delete key
 
 If you need delete a key you can use **del** method.
