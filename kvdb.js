@@ -35,6 +35,17 @@ class kvdb {
     return true;
   }
 
+  _iterateKeys() {
+    var keys = [];
+    var j, len = this.schema.length;
+    for (j = 0; j < this.db.length; j++){
+      if (this.db.key(j).substring(0, len) == this.schema) {
+        keys[j] = this.db.key(j);
+      }
+    }
+    return(keys);
+  }
+
   isNew() {
     return this.is_new;
   }
