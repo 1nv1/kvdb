@@ -7,7 +7,8 @@ It's a very simple wrapper for **localStorage**. The goal is use as a key/value 
 It's a very simple example as a guide.
 
 ```js
-let kv = new kvdb('test');
+let schema = 'test';
+let kv = new kvdb(schema);
 console.log(kv.id());
 kv.set('foo', 10);
 console.log(kv.get('foo'));
@@ -15,7 +16,8 @@ let tstj = { intro: 'Hello world' };
 kv.set('meh', tstj);
 console.log(kv.get('meh'));
 console.log(kv.get('none', ':-('));
-kv.drop('test');
+console.table(kv.keys());
+kv.drop(schema);
 ```
 
 # Methods
@@ -54,6 +56,14 @@ exist.
 
 ```js
 let value = <instance>.get(<key>, [<default value>]);
+```
+
+## Get keys list
+
+You can get a key list using **keys**. The method returns an array with the key list.
+
+```js
+let keys = <instance>.keys();
 ```
 
 ## Set value from key
