@@ -17,6 +17,7 @@ kv.set('meh', tstj);
 console.log(kv.get('meh'));
 console.log(kv.get('none', ':-('));
 console.table(kv.keys());
+console.log(kv.export());
 kv.drop(schema);
 ```
 
@@ -103,5 +104,6 @@ Drop the entire schema. Be careful.
 - [x] Get the list of keys associated with schema.
 - [ ] Better way to drop schema (performance).
 - [ ] Add a second key to use the same schema name multiple times.
-- [ ] Import/Export data from schema in json format.
+- [ ] Import data from json format to schema
+- [x] Export data from schema in json format.
 - [ ] Improve the recognition of data types.

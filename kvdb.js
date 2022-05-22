@@ -114,6 +114,26 @@ class kvdb {
     return(keys);
   }
 
+  export() {
+    var keys = [];
+    var k;
+    var j, len = this.schema.length;
+    let obj = {
+      schema: this.schema,
+      id: this.db.getItem(this.schema + '._id'),
+      data: [],
+      version: 1
+    };
+    for (j = 1; j < this.db.length; j++){
+      if (this.db.key(j).substring(0, len) == this.schema) {
+        keys[j] = this.db.key(j);
+        k = keys[j].substring(len + 1);
+        obj.data[j - 1] = { k: k, v: this.get(k) };
+      }
+    }
+    return(JSON.stringify(obj));
+  }
+
   drop() {
     let keys = this._iterateKeys();
     for (let j = 0; j < keys.length; j++) {
