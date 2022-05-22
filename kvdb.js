@@ -70,6 +70,7 @@ class kvdb {
     if (typeof value == 'number') {
       return Number(value);
     }
+
     else if (this._isJ(value) === true) {
       return JSON.parse(value);
     }
@@ -83,7 +84,9 @@ class kvdb {
     }
     else if (typeof value === 'object' && value !== null) {
       this.db.setItem(key, JSON.stringify(value));
-
+    }
+    else if (Array.isArray(value) === true) {
+      this.db.setItem(key, value.toString());
     }
     else {
       this.db.setItem(key, value);
@@ -100,19 +103,23 @@ class kvdb {
     return this.db.key(index);
   }
 
+  keys() {
+    let len = this.schema.length;
+    let kk = this._iterateKeys();
+    let keys = [];
+    let j;
+    for (j = 1; j < kk.length; j++) {
+      keys[j - 1] = kk[j].substring(len + 1);
+    }
+    return(keys);
+  }
+
   drop() {
-    var j, q;
-    var len = this.schema.length;
-    var arr = [];
-    q = this.db.length;
-    for (j = 0; j < q; j++){
-      if (this.db.key(j).substring(0, len) == this.schema)
-        arr.push(this.db.key(j));
+    let keys = this._iterateKeys();
+    for (let j = 0; j < keys.length; j++) {
+      this.db.removeItem(keys[j]);
     }
-    q = arr.length;
-    for (j = 0; j < q; j++) {
-      this.db.removeItem(arr[j]);
-    }
+    this.db.removeItem(this.schema + '._id');
   }
 
   id() {
