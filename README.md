@@ -58,9 +58,9 @@ exist.
 let value = <instance>.get(<key>, [<default value>]);
 ```
 
-## Get keys list
+## Get the keys
 
-You can get a key list using **keys**. The method returns an array with the key list.
+You can get a list of keys using **keys**. The method returns an array with the list of keys associated with the schema.
 
 ```js
 let keys = <instance>.keys();
