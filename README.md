@@ -90,7 +90,7 @@ Drop the entire schema. Be careful.
 
 # ToDo
 
-- [ ] Get the list of keys associated with schema.
+- [x] Get the list of keys associated with schema.
 - [ ] Better way to drop schema (performance).
 - [ ] Add a second key to use the same schema name multiple times.
 - [ ] Import/Export data from schema in json format.
